@@ -719,6 +719,10 @@ if [ -z "$PREFIX" ]; then
     exit 1
 fi
 
+if [ "$PHP_BUILD_DEBUG_ENABLE" == "on" ]; then
+    PREFIX="$PREFIX-debug"
+fi
+
 if [ "$PHP_BUILD_ZTS_ENABLE" == "on" ]; then
     PREFIX="$PREFIX-zts"
 fi
