@@ -90,6 +90,8 @@ PATCH_FILES=""
 # Enable Zend Thread Safety by setting this value to "yes"
 [ -z "$PHP_BUILD_ZTS_ENABLE" ] && PHP_BUILD_ZTS_ENABLE=off
 
+[ -z "$PHP_BUILD_DEBUG_ENABLE" ] && PHP_BUILD_DEBUG_ENABLE=off
+
 PHP_BUILD_VERSION="0.11.0dev"
 
 # Error Code to return if a defintion was not found.
@@ -545,6 +547,11 @@ function configure_package() {
     if [ "$PHP_BUILD_ZTS_ENABLE" == "on" ]; then
         configure_option "--enable-maintainer-zts"
         log "Warning" "Enabling Zend Thread Safety is meant only for maintainers!"
+    fi
+
+    if [ "$PHP_BUILD_DEBUG_ENABLE" == "on" ]; then
+        configure_option "--enable-debug"
+        log "Warning" "Compile with debugging symbols"
     fi
 
     # Override `--with-openssl` and `--with-libxml-dir`
