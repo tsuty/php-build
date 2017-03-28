@@ -712,6 +712,10 @@ if [ -z "$PREFIX" ]; then
     exit 1
 fi
 
+if [ "$PHP_BUILD_ZTS_ENABLE" == "on" ]; then
+    PREFIX="$PREFIX-zts"
+fi
+
 if ! find_definition "$DEFINITION" > /dev/null; then
     log Error "Definition $DEFINITION not found."
     exit $E_DEFINITION_NOT_FOUND
